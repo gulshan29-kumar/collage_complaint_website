@@ -2,40 +2,53 @@
 
 ### Campus Complaint & Maintenance Management System
 
-A beginner-friendly, production-ready MERN stack web application that streamlines reporting, reviewing, assigning, and resolving campus maintenance issues such as broken fans, water leakages, Wi-Fi outages, and classroom infrastructure defects.
+A beginner-friendly, production-ready **MERN stack** web application that streamlines reporting, reviewing, assigning, and resolving campus maintenance issues such as broken ceiling fans, water leakages, Wi-Fi outages, and classroom infrastructure defects.
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
+[![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?logo=render&logoColor=black)](https://render.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
 
 ## 📋 Table of Contents
-1. [Problem Statement](#problem-statement)
-2. [Application Workflow](#application-workflow)
-3. [User Roles & Permissions](#user-roles--permissions)
-4. [Tech Stack](#tech-stack)
-5. [System Architecture](#system-architecture)
-6. [Project Structure](#project-structure)
-7. [Database Models](#database-models)
-8. [REST API Endpoints](#rest-api-endpoints)
-9. [Local Setup Guide](#local-setup-guide)
-10. [Database Setup (MongoDB Atlas)](#database-setup-mongodb-atlas)
-11. [Environment Variables](#environment-variables)
-12. [Seed Data & Demo Credentials](#seed-data--demo-credentials)
-13. [Render Deployment Guide](#render-deployment-guide)
-14. [Future Improvements](#future-improvements)
+1. [Problem Statement](#1-problem-statement)
+2. [Application Workflow](#2-application-workflow)
+3. [User Roles & Permissions](#3-user-roles--permissions)
+4. [Tech Stack](#4-tech-stack)
+5. [System Architecture](#5-system-architecture)
+6. [Project Structure](#6-project-structure)
+7. [Database Models](#7-database-models)
+8. [REST API Endpoints](#8-rest-api-endpoints)
+9. [Local Setup Guide](#9-local-setup-guide)
+10. [Database Setup (MongoDB Atlas)](#10-database-setup-mongodb-atlas)
+11. [Environment Variables](#11-environment-variables)
+12. [Seed Data & Demo Credentials](#12-seed-data--demo-credentials)
+13. [Deployment Guide: Vercel](#13-deployment-guide-vercel)
+14. [Deployment Guide: Render](#14-deployment-guide-render)
+15. [Interview Guide: How to Explain CampusFix](#15-interview-guide-how-to-explain-campusfix)
+16. [Future Improvements](#16-future-improvements)
 
 ---
 
 ## 1. Problem Statement
 
-Students frequently face everyday campus maintenance problems:
-* Broken ceiling fans & flickering tubelights
-* Wi-Fi router failures & slow connectivity
-* Washroom plumbing leakages & drinking cooler faults
-* Broken furniture in classrooms and lecture halls
-* Hygiene and sanitization problems
+Students frequently face everyday campus infrastructure challenges:
+* **Electrical:** Broken ceiling fans, flickering tubelights, switchboard sparks
+* **Internet/Wi-Fi:** Offline access points, low signal in hostels
+* **Plumbing:** Washroom pipe bursts, leaking taps, cold water geysers
+* **Classroom & Lab:** Broken projector HDMI pins, damaged audio systems
+* **Furniture:** Wobbly benches, broken study desks, damaged chairs
+* **Cleaning:** Untended spills, classroom dust, garbage overflow
 
-Traditionally, students report these issues through informal WhatsApp groups, verbal complaints, or phone calls. These methods lack traceability, accountability, and status updates.
+Traditionally, students report these issues through informal WhatsApp groups, phone calls, or word-of-mouth. These methods result in lost requests, zero accountability, and students left in the dark about progress.
 
-**CampusFix** solves this by providing a unified, transparent digital grievance pipeline where students lodge issues, administrators review and assign appropriate staff, and maintenance personnel resolve tickets with transparent resolution notes.
+**CampusFix** provides a transparent, single-platform grievance lifecycle:
+Students lodge complaints ➔ Admins triage and assign personnel ➔ Staff fix and document resolutions ➔ Students track real-time status.
 
 ---
 
@@ -65,28 +78,28 @@ Student Sees Fixed Status & Resolution Remarks
 
 | Role | Permissions |
 | :--- | :--- |
-| **Student** | • Register personal student account & login<br>• Create maintenance complaints (Title, Category, Location, Priority, Description)<br>• View personal complaints & real-time status<br>• View complaint details & staff resolution notes<br>• Cancel (delete) complaints if still in **Pending** state |
-| **Admin** | • Secure login<br>• View campus-wide complaints across all departments<br>• Live dashboard metrics (Total, Pending, In Progress, Resolved)<br>• Filter complaints by Status, Category, and Priority<br>• Search complaints by title or student name<br>• Assign specific staff members to complaints<br>• Update priority & override status |
-| **Staff** | • Secure login<br>• View exclusively tasks assigned to them<br>• Change complaint status to **In Progress**<br>• Mark complaint as **Resolved** by writing an explanatory Resolution Note |
+| **Student** | • Register student account and log in<br>• Lodge complaints (Title, Category, Location, Priority, Description)<br>• View personal complaint dashboard with live status cards<br>• View detailed complaint history & staff resolution notes<br>• Cancel (permanently delete) complaints **only** while in `Pending` state |
+| **Admin** | • Secure administrative login<br>• Full campus-wide visibility across all departments<br>• High-level metrics: Total, Pending, In Progress, Resolved<br>• Real-time search by complaint title or student name<br>• Multi-criteria filtering by Status, Category, and Priority<br>• Assign complaints to specific maintenance staff<br>• Override priority and grievance status |
+| **Staff** | • Secure staff login<br>• Dedicated work queue showing tickets assigned to them<br>• Transition ticket status from `Assigned` to `In Progress`<br>• Close tickets as `Resolved` by submitting an explanatory Resolution Note |
 
 ---
 
 ## 4. Tech Stack
 
 ### Frontend
-* **React (v18)** — Component-based user interface
-* **Vite** — High-performance frontend build tool
-* **Tailwind CSS** — Clean, modern, responsive styling
-* **React Router (v6)** — Client-side route management
+* **React (v18)** — Component-based architecture with clean React state & Context API
+* **Vite** — Sub-second Hot Module Replacement (HMR) & optimized production bundling
+* **Tailwind CSS** — Utility-first, clean, modern styling (no heavy UI frameworks)
+* **React Router (v6)** — Client-side SPA routing with protected role-based guards
 * **Axios** — HTTP client with Bearer token interceptor
-* **Lucide React** — Lightweight, modern icon library
+* **Lucide React** — Minimalist, professional SVG icon set
 
 ### Backend
-* **Node.js** & **Express.js** — RESTful API web framework
-* **MongoDB** & **Mongoose** — Document database & ODM
-* **JSON Web Token (JWT)** — Stateless user session authentication
-* **bcryptjs** — Industry-standard salted password hashing
-* **cors** — Cross-Origin Resource Sharing middleware
+* **Node.js** & **Express.js** — Modular REST API web service
+* **MongoDB** & **Mongoose** — Flexible document store & ODM
+* **JSON Web Token (JWT)** — Stateless user authentication
+* **bcryptjs** — Salted password hashing (10 rounds)
+* **cors** — Cross-Origin Resource Sharing
 * **dotenv** — Environment configuration loader
 
 ---
@@ -101,10 +114,10 @@ Student Sees Fixed Status & Resolution Remarks
                             │ HTTPS / REST (JWT Auth)
                             ▼
 ┌────────────────────────────────────────────────────────┐
-│              Render Express API Web Service            │
+│             Express REST API (Render / Vercel)         │
 │         AuthMiddleware ── Router ── Controllers        │
 └───────────────────────────┬────────────────────────────┘
-                            │ Mongoose TCP Connection
+                            │ Mongoose Connection
                             ▼
 ┌────────────────────────────────────────────────────────┐
 │                  MongoDB Atlas Cloud                   │
@@ -119,58 +132,61 @@ Student Sees Fixed Status & Resolution Remarks
 ```text
 CampusFix/
 │
-├── client/
+├── client/                     # Frontend Application
 │   ├── public/
+│   │   └── _redirects          # SPA client-side routing rule for Render
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── StatusBadge.jsx
+│   │   ├── components/         # Reusable UI components
 │   │   │   ├── ComplaintCard.jsx
-│   │   │   └── ProtectedRoute.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   └── StatusBadge.jsx
 │   │   ├── context/
-│   │   │   └── AuthContext.jsx
+│   │   │   └── AuthContext.jsx # Global user session & JWT state
 │   │   ├── pages/
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── ComplaintDetails.jsx
+│   │   │   ├── CreateComplaint.jsx
 │   │   │   ├── Login.jsx
 │   │   │   ├── Register.jsx
-│   │   │   ├── StudentDashboard.jsx
-│   │   │   ├── CreateComplaint.jsx
-│   │   │   ├── ComplaintDetails.jsx
-│   │   │   ├── AdminDashboard.jsx
-│   │   │   └── StaffDashboard.jsx
+│   │   │   ├── StaffDashboard.jsx
+│   │   │   └── StudentDashboard.jsx
 │   │   ├── services/
-│   │   │   └── api.js
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
+│   │   │   └── api.js          # Centralized Axios API service
+│   │   ├── App.jsx             # Route definitions & guards
+│   │   ├── main.jsx            # Entry point
+│   │   └── index.css           # Tailwind directives
 │   ├── index.html
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   ├── vite.config.js
 │   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vercel.json             # Vercel SPA rewrite rules
+│   ├── vite.config.js
 │   ├── .env.example
 │   └── .env
 │
-├── server/
+├── server/                     # Backend Application
 │   ├── config/
-│   │   └── db.js
-│   ├── controllers/
+│   │   └── db.js               # MongoDB connection with serverSelectionTimeout
+│   ├── controllers/            # Controller logic
+│   │   ├── adminController.js
 │   │   ├── authController.js
 │   │   ├── complaintController.js
-│   │   ├── adminController.js
 │   │   └── staffController.js
-│   ├── middleware/
-│   │   ├── authMiddleware.js
-│   │   └── roleMiddleware.js
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Complaint.js
-│   ├── routes/
+│   ├── middleware/             # Middleware
+│   │   ├── authMiddleware.js   # JWT protect middleware
+│   │   └── roleMiddleware.js   # Role authorization middleware
+│   ├── models/                 # Database Schemas
+│   │   ├── Complaint.js
+│   │   └── User.js
+│   ├── routes/                 # Express Routers
+│   │   ├── adminRoutes.js
 │   │   ├── authRoutes.js
 │   │   ├── complaintRoutes.js
-│   │   ├── adminRoutes.js
 │   │   └── staffRoutes.js
-│   ├── seed.js
-│   ├── server.js
+│   ├── seed.js                 # Database seed script
+│   ├── server.js               # Express server entry point
+│   ├── vercel.json             # Serverless configuration for Vercel
 │   ├── package.json
 │   ├── .env.example
 │   └── .env
@@ -225,28 +241,36 @@ CampusFix/
 ## 8. REST API Endpoints
 
 ### Authentication
-* `POST /api/auth/register` — Register a student account
-* `POST /api/auth/login` — Log in with email and password
-* `GET /api/auth/me` — Fetch currently authenticated user session
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Public | Register student (sets `role: student`) |
+| `POST` | `/api/auth/login` | Public | Authenticate user & return JWT token |
+| `GET` | `/api/auth/me` | Private | Fetch logged-in user profile |
 
 ### Complaints (Student & General)
-* `POST /api/complaints` — Submit a new complaint (Student)
-* `GET /api/complaints` — Fetch complaints (Student gets own, Admin gets all)
-* `GET /api/complaints/:id` — Get single complaint details
-* `PUT /api/complaints/:id` — Update complaint details
-* `DELETE /api/complaints/:id` — Cancel complaint (Pending only)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/complaints` | Private (Student) | Create new complaint |
+| `GET` | `/api/complaints` | Private | Role-aware: Student gets own, Admin gets all |
+| `GET` | `/api/complaints/:id` | Private | Fetch single complaint details |
+| `PUT` | `/api/complaints/:id` | Private | Update complaint details |
+| `DELETE` | `/api/complaints/:id` | Private (Student) | Cancel complaint (`Pending` status only) |
 
 ### Admin Operations
-* `GET /api/admin/stats` — Dashboard metrics & complaint counts
-* `GET /api/admin/staff` — List of all staff members for assignment
-* `PUT /api/admin/complaints/:id/assign` — Assign complaint to staff
-* `PUT /api/admin/complaints/:id/priority` — Update priority
-* `PUT /api/admin/complaints/:id/status` — Update complaint status
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/admin/stats` | Admin | Overall counts: Total, Pending, In Progress, Resolved |
+| `GET` | `/api/admin/staff` | Admin | Get list of staff users for assignment dropdown |
+| `PUT` | `/api/admin/complaints/:id/assign` | Admin | Assign complaint to staff member |
+| `PUT` | `/api/admin/complaints/:id/priority` | Admin | Change priority (`Low`, `Medium`, `High`) |
+| `PUT` | `/api/admin/complaints/:id/status` | Admin | Change status & optional admin note |
 
 ### Staff Operations
-* `GET /api/staff/complaints` — Fetch complaints assigned to logged-in staff
-* `PUT /api/staff/complaints/:id/status` — Update status to In Progress
-* `PUT /api/staff/complaints/:id/resolve` — Mark complaint Resolved with resolution note
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/staff/complaints` | Staff | Fetch complaints assigned to logged-in staff |
+| `PUT` | `/api/staff/complaints/:id/status` | Staff | Update status to `In Progress` |
+| `PUT` | `/api/staff/complaints/:id/resolve` | Staff | Resolve complaint with required `resolutionNote` |
 
 ---
 
@@ -255,158 +279,195 @@ CampusFix/
 ### Prerequisites
 * **Node.js** (v18 or higher)
 * **npm** (v9 or higher)
-* A running MongoDB instance or a free **MongoDB Atlas** database URI
+* A MongoDB connection string (from MongoDB Atlas or local MongoDB)
 
-### 1. Clone the repository
+### Step 1: Clone Repository
 ```bash
 git clone https://github.com/gulshan29-kumar/collage_complaint_website.git
 cd collage_complaint_website
 ```
 
-### 2. Backend Setup
+### Step 2: Backend Setup
 ```bash
 cd server
 npm install
 cp .env.example .env
 ```
-Edit `server/.env` and provide your `MONGO_URI` and `JWT_SECRET`.
+Open `server/.env` and configure:
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/campusfix?retryWrites=true&w=majority
+JWT_SECRET=supersecretjwtkey_campusfix_2026
+CLIENT_URL=http://localhost:5173
+```
 
-Populate initial demo data:
+Seed database with demo accounts & sample complaints:
 ```bash
 npm run seed
 ```
 
-Start backend development server:
+Start backend dev server:
 ```bash
 npm run dev
-# Server will run on http://localhost:5000
+# Running on http://localhost:5000
 ```
 
-### 3. Frontend Setup
-Open a second terminal window:
+### Step 3: Frontend Setup
+In a new terminal window:
 ```bash
 cd client
 npm install
 cp .env.example .env
 ```
-
-Start frontend Vite development server:
-```bash
-npm run dev
-# Client will run on http://localhost:5173
+Ensure `client/.env` has:
+```env
+VITE_API_URL=http://localhost:5000
 ```
 
-Open `http://localhost:5173` in your browser.
+Start Vite dev server:
+```bash
+npm run dev
+# Running on http://localhost:5173
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## 10. Database Setup (MongoDB Atlas)
 
-To use MongoDB Atlas (Cloud):
-
-1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and sign in.
-2. Create a **Free Shared Cluster (M0)**.
-3. Under **Security → Database Access**, create a database user:
-   * Example username: `campusadmin`
-   * Secure password: `<your_password>`
-   * Role: `Read and write to any database`
-4. Under **Security → Network Access**, add IP address:
-   * Select `Allow Access from Anywhere` (`0.0.0.0/0`) so Render can connect.
-5. Under **Deployments → Database → Connect**:
-   * Choose **Drivers (Node.js)**.
-   * Copy the connection string, for example:
+1. Create a free account at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas).
+2. Create a free **M0 Shared Cluster**.
+3. **Database Access:**
+   * Create a database user (e.g. `campusadmin`).
+   * Choose password authentication and set a strong password.
+   * Privileges: `Read and write to any database`.
+4. **Network Access:**
+   * Add IP: Choose `Allow Access from Anywhere` (`0.0.0.0/0`) so cloud hosts can connect.
+5. **Connect:**
+   * Select **Drivers** (Node.js).
+   * Copy the connection string and replace `<password>` with your database user password:
      ```text
      mongodb+srv://campusadmin:<password>@cluster0.abcde.mongodb.net/campusfix?retryWrites=true&w=majority
      ```
-   * Replace `<password>` with your database user's password.
-6. Paste this URI into `server/.env` as `MONGO_URI`.
+6. Add this URI as `MONGO_URI` in `server/.env`.
 
 ---
 
 ## 11. Environment Variables
 
 ### Backend (`server/.env`)
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `PORT` | Port for Express server | `5000` |
-| `MONGO_URI` | MongoDB connection URI string | `mongodb+srv://...` |
-| `JWT_SECRET` | Secret key for signing JWTs | `campusfix_jwt_secret_2026` |
-| `CLIENT_URL` | Frontend URL for CORS | `http://localhost:5173` |
+| Variable | Required | Description | Example |
+| :--- | :---: | :--- | :--- |
+| `PORT` | No | Express port (default: 5000) | `5000` |
+| `MONGO_URI` | Yes | MongoDB Atlas connection string | `mongodb+srv://...` |
+| `JWT_SECRET` | Yes | Secret key for signing tokens | `campusfix_jwt_key_2026` |
+| `CLIENT_URL` | Yes | Frontend origin for CORS | `http://localhost:5173` |
 
 ### Frontend (`client/.env`)
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `VITE_API_URL` | Base URL of Express backend API | `http://localhost:5000` |
+| Variable | Required | Description | Example |
+| :--- | :---: | :--- | :--- |
+| `VITE_API_URL` | Yes | Base URL of backend REST API | `http://localhost:5000` |
 
 ---
 
 ## 12. Seed Data & Demo Credentials
 
-To populate demo accounts and 9 sample complaints, run:
-```bash
-cd server
-npm run seed
-```
+Run `npm run seed` in the `server` directory to populate:
 
-> **Note:** These credentials are for demonstration and testing purposes.
+| Role | Email | Password | Features to Test |
+| :--- | :--- | :--- | :--- |
+| **Student** | `student@campusfix.com` | `Student@123` | Create complaints, view live cards, cancel pending complaints |
+| **Staff** | `staff@campusfix.com` | `Staff@123` | View assigned queue, mark "In Progress", write resolution note |
+| **Admin** | `admin@campusfix.com` | `Admin@123` | Full metrics, search/filter table, assign staff, change priority |
 
-| Role | Email | Password |
-| :--- | :--- | :--- |
-| **Admin** | `admin@campusfix.com` | `Admin@123` |
-| **Staff** | `staff@campusfix.com` | `Staff@123` |
-| **Student** | `student@campusfix.com` | `Student@123` |
-
-*(The login page also includes 1-click Quick Fill demo buttons for convenient evaluation)*
+> 💡 **Quick Demo Feature:** The login screen has built-in **1-Click Demo Buttons** (Student, Staff, Admin) to instantly auto-fill credentials for quick evaluator demonstrations.
 
 ---
 
-## 13. Render Deployment Guide
+## 13. Deployment Guide: Vercel
 
-### Deploying the Backend (Render Web Service)
-1. In your Render Dashboard, click **New + → Web Service**.
+Both the frontend and backend are pre-configured with `vercel.json` for Vercel deployment.
+
+### 1. Deploy Backend on Vercel
+1. Go to [vercel.com](https://vercel.com) and click **Add New... → Project**.
+2. Select your repository: `collage_complaint_website`.
+3. Set **Root Directory** to `server`.
+4. Add Environment Variables:
+   * `MONGO_URI` = `<Your MongoDB Atlas URI>`
+   * `JWT_SECRET` = `<Your Secret String>`
+   * `CLIENT_URL` = `http://localhost:5173` *(update after frontend is deployed)*
+   * `NODE_ENV` = `production`
+5. Click **Deploy**. Copy the live API URL (e.g. `https://campusfix-api.vercel.app`).
+
+### 2. Deploy Frontend on Vercel
+1. In Vercel, click **Add New... → Project**.
+2. Select the same repository: `collage_complaint_website`.
+3. Set **Root Directory** to `client`.
+4. Framework Preset: **Vite**.
+5. Add Environment Variable:
+   * `VITE_API_URL` = `https://campusfix-api.vercel.app` *(Backend URL without trailing slash)*
+6. Click **Deploy**. Copy the live frontend URL (e.g. `https://campusfix.vercel.app`).
+
+### 3. Update Backend CORS
+* Go to your backend Vercel project Settings → Environment Variables.
+* Update `CLIENT_URL` to `https://campusfix.vercel.app`.
+* Trigger a redeployment of the backend.
+
+---
+
+## 14. Deployment Guide: Render
+
+### 1. Deploy Backend (Web Service)
+1. Go to [render.com](https://render.com) ➔ **New + ➔ Web Service**.
 2. Connect your GitHub repository.
-3. Configure the settings:
-   * **Name**: `campusfix-api`
-   * **Root Directory**: `server`
-   * **Environment**: `Node`
-   * **Build Command**: `npm install`
-   * **Start Command**: `npm start`
-4. Under **Environment Variables**, add:
-   * `MONGO_URI` = `<Your MongoDB Atlas Connection String>`
-   * `JWT_SECRET` = `<Your Secure Random Secret>`
-   * `CLIENT_URL` = `<Your Deployed Frontend Render URL, e.g. https://campusfix.onrender.com>`
-   * `PORT` = `10000` (or leave default, Render sets `PORT` automatically)
-5. Click **Create Web Service**.
-6. Copy your deployed backend service URL (e.g. `https://campusfix-api.onrender.com`).
+3. Settings:
+   * **Root Directory:** `server`
+   * **Build Command:** `npm install`
+   * **Start Command:** `npm start`
+4. Add Environment Variables:
+   * `MONGO_URI` = `<Your MongoDB Atlas URI>`
+   * `JWT_SECRET` = `<Your Secret>`
+   * `CLIENT_URL` = `https://campusfix.onrender.com`
+5. Click **Create Web Service**. Copy your backend URL (`https://campusfix-api.onrender.com`).
+
+### 2. Deploy Frontend (Static Site)
+1. In Render ➔ **New + ➔ Static Site**.
+2. Settings:
+   * **Root Directory:** `client`
+   * **Build Command:** `npm install && npm run build`
+   * **Publish Directory:** `dist`
+3. Add Environment Variable:
+   * `VITE_API_URL` = `https://campusfix-api.onrender.com`
+4. Click **Create Static Site**.
 
 ---
 
-### Deploying the Frontend (Render Static Site)
-1. In your Render Dashboard, click **New + → Static Site**.
-2. Connect your GitHub repository.
-3. Configure the settings:
-   * **Name**: `campusfix-client`
-   * **Root Directory**: `client`
-   * **Build Command**: `npm install && npm run build`
-   * **Publish Directory**: `dist`
-4. Under **Environment Variables**, add:
-   * `VITE_API_URL` = `https://campusfix-api.onrender.com` (Your backend Render URL without trailing slash)
-5. Under **Redirects/Rewrites**:
-   * Add a Rewrite rule for single-page applications:
-     * **Source**: `/*`
-     * **Destination**: `/index.html`
-     * **Action**: `Rewrite`
-6. Click **Create Static Site**.
+## 15. Interview Guide: How to Explain CampusFix
+
+When discussing this project in an internship or software engineering interview:
+
+1. **The Problem:**
+   > *"Campuses often rely on unorganized verbal complaints or WhatsApp messages for maintenance issues. CampusFix solves this with an end-to-end digital grievance pipeline with role-based access control."*
+
+2. **Architecture & State Management:**
+   > *"I used React with Vite for rapid bundling, Tailwind CSS for clean UI, and Express with Mongoose for REST APIs. Rather than introducing complex Redux boilerplates, I used standard React state and an AuthContext for user sessions and JWT persistence, making the codebase maintainable and readable."*
+
+3. **Role-Based Access Control (RBAC):**
+   > *"There are three distinct roles: Students, Staff, and Admins. On the backend, we enforce this with an `authMiddleware` that verifies the JWT token and a `roleMiddleware` that protects sensitive routes. On the frontend, `ProtectedRoute` components prevent unauthorized page access."*
+
+4. **Edge Cases Handled:**
+   > *"A student can only cancel a complaint while it is in the `Pending` state. Once an admin assigns staff or work starts, cancellation is disabled to prevent conflicting workflows."*
 
 ---
 
-## 14. Future Improvements
-* Email notifications on status updates (Nodemailer)
-* Photo/image attachment uploads via Cloudinary or S3
-* Student satisfaction rating (1-5 stars) upon complaint resolution
-* Department-level PDF report generation for annual audits
+## 16. Future Improvements
+* Email notifications for ticket updates using Nodemailer
+* File & photo evidence attachment uploads using Cloudinary / AWS S3
+* Student satisfaction rating (1-5 stars) upon resolution
+* Exportable monthly maintenance audit reports in CSV / PDF
 
 ---
 
 ## 📄 License
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
